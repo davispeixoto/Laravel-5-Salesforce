@@ -1,0 +1,23 @@
+{
+    "name": "davispeixoto/laravel-salesforce",
+    "description": "Laravel 4 Salesforce Force.com PHP Toolkit port",
+    "keywords": ["laravel", "salesforce", "crm", "force.com toolkit", "laravel 4"],
+    "license" : "MIT",
+    "authors": [
+        {
+            "name": "Davis Peixoto",
+            "email": "davis.peixoto@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.*",
+        "davispeixoto/force-dot-com-toolkit-for-php": "1.0.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Davispeixoto\\LaravelSalesforce\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
