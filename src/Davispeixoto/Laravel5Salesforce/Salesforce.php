@@ -1,7 +1,15 @@
 <?php namespace Davispeixoto\Laravel5Salesforce;
 
 use Davispeixoto\ForceDotComToolkitForPhp\SforceEnterpriseClient as Client;
+use Illuminate\Config\Repository;
+use Exception;
 
+/**
+ * Class Salesforce
+ * @package Davispeixoto\Laravel5Salesforce
+ *
+ * The Salesforce service accessor Constructor
+ */
 class Salesforce
 {
     public $sfh;
@@ -19,11 +27,14 @@ class Salesforce
 
             $this->sfh->createConnection($wsdl);
 
-            $this->sfh->login($configExternal->get('laravel-salesforce::username'),
-                $configExternal->get('laravel-salesforce::password') . $configExternal->get('laravel-salesforce::token'));
+            $user = $configExternal->get('laravel-salesforce::username');
+            $pass = $configExternal->get('laravel-salesforce::password');
+            $token = $configExternal->get('laravel-salesforce::token');
+
+            $this->sfh->login($user, $pass . $token);
+
             return $this;
         } catch (Exception $e) {
-            Log::error($e->getMessage());
             throw new Exception('Exception no Construtor' . $e->getMessage() . "\n\n" . $e->getTraceAsString());
         }
     }
@@ -61,7 +72,7 @@ class Salesforce
 
     public function printDebugInfo()
     {
-        return $this->sfh->printDebugInfo();
+        $this->sfh->printDebugInfo();
     }
 
     public function createConnection($wsdl, $proxy = null, $soap_options = array())
@@ -71,7 +82,7 @@ class Salesforce
 
     public function setCallOptions($header)
     {
-        return $this->sfh->setCallOptions($header);
+        $this->sfh->setCallOptions($header);
     }
 
     public function login($username, $password)
@@ -91,57 +102,57 @@ class Salesforce
 
     public function setEndpoint($location)
     {
-        return $this->sfh->setEndpoint($location);
+        $this->sfh->setEndpoint($location);
     }
 
     public function setAssignmentRuleHeader($header)
     {
-        return $this->sfh->setAssignmentRuleHeader($header);
+        $this->sfh->setAssignmentRuleHeader($header);
     }
 
     public function setEmailHeader($header)
     {
-        return $this->sfh->setEmailHeader($header);
+        $this->sfh->setEmailHeader($header);
     }
 
     public function setLoginScopeHeader($header)
     {
-        return $this->sfh->setLoginScopeHeader($header);
+        $this->sfh->setLoginScopeHeader($header);
     }
 
     public function setMruHeader($header)
     {
-        return $this->sfh->setMruHeader($header);
+        $this->sfh->setMruHeader($header);
     }
 
     public function setSessionHeader($id)
     {
-        return $this->sfh->setSessionHeader($id);
+        $this->sfh->setSessionHeader($id);
     }
 
     public function setUserTerritoryDeleteHeader($header)
     {
-        return $this->sfh->setUserTerritoryDeleteHeader($header);
+        $this->sfh->setUserTerritoryDeleteHeader($header);
     }
 
     public function setQueryOptions($header)
     {
-        return $this->sfh->setQueryOptions($header);
+        $this->sfh->setQueryOptions($header);
     }
 
     public function setAllowFieldTruncationHeader($header)
     {
-        return $this->sfh->setAllowFieldTruncationHeader($header);
+        $this->sfh->setAllowFieldTruncationHeader($header);
     }
 
     public function setLocaleOptions($header)
     {
-        return $this->sfh->setLocaleOptions($header);
+        $this->sfh->setLocaleOptions($header);
     }
 
     public function setPackageVersionHeader($header)
     {
-        return $this->sfh->setPackageVersionHeader($header);
+        $this->sfh->setPackageVersionHeader($header);
     }
 
     public function getSessionId()
@@ -324,9 +335,6 @@ class Salesforce
      */
     public function dump()
     {
-        $str = print_r($this, true);
-        //$str .= print_r($this->sfh , true);
+        return print_r($this, true);
     }
 }
-
-?>

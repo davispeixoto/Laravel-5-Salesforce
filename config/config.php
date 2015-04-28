@@ -11,7 +11,7 @@ return array(
 
     // production
     'username'    => '',
-	'password' => '',
-	'token' => '',
+    'password' => '',
+    'token' => '',
     'wsdl' => app_path() . '/wsdl/enterprise.wsdl.xml',
 );
