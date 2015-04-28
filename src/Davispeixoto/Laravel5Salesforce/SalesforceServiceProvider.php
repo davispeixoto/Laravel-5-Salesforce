@@ -1,7 +1,6 @@
 <?php namespace Davispeixoto\Laravel5Salesforce;
 
 use Illuminate\Support\ServiceProvider;
-use Davispeixoto\Laravel5Salesforce\Salesforce;
 
 /**
  * Class SalesforceServiceProvider
@@ -42,7 +41,7 @@ class SalesforceServiceProvider extends ServiceProvider
     {
         $this->app->singleton('salesforce', function ($app) {
             $config = $app['config']->get('salesforce');
-            return Aws::factory($config);
+            return new Salesforce($config);
         });
         $this->app->alias('salesforce', 'Davispeixoto\Laravel5Salesforce\Salesforce');
     }
