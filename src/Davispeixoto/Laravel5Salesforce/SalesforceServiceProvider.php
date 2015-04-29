@@ -1,5 +1,6 @@
 <?php namespace Davispeixoto\Laravel5Salesforce;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -16,7 +17,7 @@ class SalesforceServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
 
     /**
@@ -41,11 +42,21 @@ class SalesforceServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->booting(function() {
+            $loader = AliasLoader::getInstance();
+            $loader->alias('Salesforce', 'Davispeixoto\Laravel5Salesforce\SalesforceFacade');
+            $loader->alias('SF', 'Davispeixoto\Laravel5Salesforce\SalesforceFacade');
+        });
+
+//        $this->app['salesforce'] = $this->app->share(function($app) {
+//            return new Salesforce($app['config']);
+//        });
+
         $this->app->singleton('salesforce', function ($app) {
             $config = $app['config']->get('salesforce');
             return new Salesforce($config);
         });
-        $this->app->alias('salesforce', 'Davispeixoto\Laravel5Salesforce\Salesforce');
+        //$this->app->alias('salesforce', 'Davispeixoto\Laravel5Salesforce\Salesforce');
     }
 
 
