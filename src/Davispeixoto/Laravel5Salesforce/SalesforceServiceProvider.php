@@ -28,8 +28,7 @@ class SalesforceServiceProvider extends ServiceProvider
     public function boot()
     {
         $config = __DIR__ . '/config/config.php';
-        $this->mergeConfigFrom($config, 'foo');
-        //$this->publishes([$config => config_path('salesforce.php')], 'config');
+        $this->mergeConfigFrom($config, 'salesforce');
         $this->publishes([$config => config_path('salesforce.php')]);
 
     }
@@ -48,15 +47,9 @@ class SalesforceServiceProvider extends ServiceProvider
             $loader->alias('SF', 'Davispeixoto\Laravel5Salesforce\SalesforceFacade');
         });
 
-//        $this->app['salesforce'] = $this->app->share(function($app) {
-//            return new Salesforce($app['config']);
-//        });
-
-        $this->app->singleton('salesforce', function ($app) {
-            $config = $app['config']->get('salesforce');
-            return new Salesforce($config);
+        $this->app['salesforce'] = $this->app->share(function($app) {
+            return new Salesforce($app['config']);
         });
-        //$this->app->alias('salesforce', 'Davispeixoto\Laravel5Salesforce\Salesforce');
     }
 
 
