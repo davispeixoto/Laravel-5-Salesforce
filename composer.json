@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Davispeixoto\\Laravel5Salesforce\\": "src/"
+            "Davispeixoto\\Laravel5Salesforce\\": "src/Davispeixoto/Laravel5Salesforce"
         }
     },
     "minimum-stability": "dev"

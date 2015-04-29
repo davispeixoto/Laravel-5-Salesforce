@@ -26,9 +26,11 @@ class SalesforceServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $config = realpath(__DIR__ . '/../config/config.php');
-        $this->mergeConfigFrom($config, 'salesforce');
-        $this->publishes([$config => config_path('salesforce.php')], 'config');
+        $config = __DIR__ . '/config/config.php';
+        $this->mergeConfigFrom($config, 'foo');
+        //$this->publishes([$config => config_path('salesforce.php')], 'config');
+        $this->publishes([$config => config_path('salesforce.php')]);
+
     }
 
 
