@@ -1,48 +1,83 @@
 # Laravel 5 Salesforce
 
-This Laravel 5 package provides an interface for using [Salesforce CRM](http://www.salesforce.com/) through its SOAP API.
+This Laravel 5 package provides an interface for using [Salesforce CRM](http://www.salesforce.com/) through its **SOAP API**.
+
+_(Laravel 4 Salesforce Package can be found [here](https://github.com/davispeixoto/Laravel-4-Salesforce))_
 
 ## Installation
 
-Begin by installing this package through Composer. Edit your project's `composer.json` file to require `davispeixoto/laravel-salesforce`.
+The Laravel 5 package can be installed via [Composer](http://getcomposer.org) by requiring the
+`davispeixoto/laravel5-salesforce` package in your project's `composer.json`.
+
 ```json
+{
     "require": {
-        "davispeixoto/laravel5-salesforce": "1.*"
+        "davispeixoto/laravel5-salesforce": "~1.0"
     }
+}
 ```
 
-Next, update Composer from the Terminal:
+And running a composer update from your terminal:
 ```sh
-    composer update
+php composer.phar update
 ```
 
-Once this operation completes, still in Terminal run:
-```sh
-	php artisan vendor:publish
+To use the Salesforce Package, you must register the provider when bootstrapping your Laravel 5 application.
+
+Find the `providers` key in your `config/app.php` and register the AWS Service Provider.
+
+```php
+    'providers' => array(
+        // ...
+        'Davispeixoto\Laravel5Salesforce\SalesforceServiceProvider',
+    )
 ```
 
 ## Configuration
 
-Update the settings in the generated `config/salesforce.php` configuration file with your salesforce credentials.
+By default, the package uses the following environment variables to auto-configure the plugin without modification:
+```
+SALESFORCE_USERNAME
+SALESFORCE_PASSWORD
+SALESFORCE_TOKEN
+```
 
-Ensure you put [your WSDL file](https://www.salesforce.com/us/developer/docs/api/Content/sforce_api_quickstart_steps_generate_wsdl.htm) into a proper place and make it readable by your Laravel Application. 
+Place your [your **enterprise** WSDL file](https://www.salesforce.com/us/developer/docs/api/Content/sforce_api_quickstart_steps_generate_wsdl.htm) into your app `storage/app/wsdl/` directory.
+
+To customize the configuration file, publish the package configuration using Artisan.
+
+```sh
+php artisan vendor:publish
+```
+
+Update the settings in the generated `config/salesforce.php` configuration file with your credentials.
+
+```php
+return [
+    'username' => 'YOUR_SALESFORCE_USERNAME',
+    'password' => 'YOUR_SALESFORCE_PASSWORD',
+    'token' => 'YOUR_SALESFORCE_TOKEN',
+    'wsdl' => 'path/to/your/enterprise.wsdl.xml',
+];
+```
 
 **IMPORTANT:** the PHP Force.com Toolkit for PHP only works with Enterprise WSDL
 
-Finally add the service provider. Open `config/app.php`, and add a new item to the providers array.
-
-    'Davispeixoto\LaravelSalesforce\LaravelSalesforceServiceProvider'
+## Usage
 
 That's it! You're all set to go. Just use:
 
+```php
+    Use Salesforce;
     Route::get('/test', function() {
         try {
-            echo print_r(Salesforce::describeLayout('Account'));
+            echo print_r(Salesforce::describeLayout('Account'), true);
         } catch (Exception $e) {
-            Log::error($e->getMessage());
-            die($e->getMessage() . $e->getTraceAsString());
+            echo $e->getMessage();
+            echo $e->getTraceAsString
         }
     });
+```
 
 ## More Information
 
@@ -50,7 +85,7 @@ Check out the [SOAP API Salesforce Documentation](http://www.salesforce.com/us/d
 
 ## License
 
-This Salesforce Force.com Toolkit for PHP port is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+This software is licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
 ## Versioning
 
