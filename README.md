@@ -1,34 +1,35 @@
-Laravel 5 Salesforce
-====================
+# Laravel 5 Salesforce
 
 This Laravel 5 package provides an interface for using [Salesforce CRM](http://www.salesforce.com/) through its SOAP API.
 
-Installation
-------------
+## Installation
 
 Begin by installing this package through Composer. Edit your project's `composer.json` file to require `davispeixoto/laravel-salesforce`.
-
+```json
     "require": {
-        "davispeixoto/laravel-salesforce": "1.*"
+        "davispeixoto/laravel5-salesforce": "1.*"
     }
+```
 
 Next, update Composer from the Terminal:
-
+```sh
     composer update
+```
 
 Once this operation completes, still in Terminal run:
+```sh
+	php artisan vendor:publish
+```
 
-	php artisan config:publish davispeixoto/laravel-salesforce
-	
-### Configuration
+## Configuration
 
-Update the settings in the generated `app/config/packages/davispeixoto/laravel-salesforce` configuration file with your salesforce credentials.
+Update the settings in the generated `config/salesforce.php` configuration file with your salesforce credentials.
 
 Ensure you put [your WSDL file](https://www.salesforce.com/us/developer/docs/api/Content/sforce_api_quickstart_steps_generate_wsdl.htm) into a proper place and make it readable by your Laravel Application. 
 
 **IMPORTANT:** the PHP Force.com Toolkit for PHP only works with Enterprise WSDL
 
-Finally add the service provider. Open `app/config/app.php`, and add a new item to the providers array.
+Finally add the service provider. Open `config/app.php`, and add a new item to the providers array.
 
     'Davispeixoto\LaravelSalesforce\LaravelSalesforceServiceProvider'
 
@@ -43,15 +44,15 @@ That's it! You're all set to go. Just use:
         }
     });
 
-### More Information
+## More Information
 
 Check out the [SOAP API Salesforce Documentation](http://www.salesforce.com/us/developer/docs/api/index_Left.htm)
 
-### License
+## License
 
 This Salesforce Force.com Toolkit for PHP port is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
-### Versioning
+## Versioning
 
 This project follows the [Semantic Versioning](http://semver.org/)
 

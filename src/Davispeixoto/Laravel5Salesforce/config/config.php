@@ -10,8 +10,8 @@ return array(
     */
 
     // production
-    'username'    => '',
-    'password' => '',
-    'token' => '',
-    'wsdl' => app_path() . '/wsdl/enterprise.wsdl.xml',
+    'username' => env('SALESFORCE_USERNAME'),
+    'password' => env('SALESFORCE_PASSWORD'),
+    'token' => env('SALESFORCE_TOKEN'),
+    'wsdl' => storage_path('app/' . env('SALESFORCE_WSDL', 'wsdl/enterprise.wsdl.xml')),
 );

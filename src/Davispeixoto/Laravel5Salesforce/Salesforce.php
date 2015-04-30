@@ -19,7 +19,7 @@ class Salesforce
         try {
             $this->sfh = new Client();
 
-            $wsdl = $configExternal->get('laravel-salesforce::wsdl');
+            $wsdl = $configExternal->get('salesforce.wsdl');
 
             if (empty($wsdl)) {
                 $wsdl = __DIR__ . '/Wsdl/enterprise.wsdl.xml';
@@ -27,9 +27,9 @@ class Salesforce
 
             $this->sfh->createConnection($wsdl);
 
-            $user = $configExternal->get('laravel-salesforce::username');
-            $pass = $configExternal->get('laravel-salesforce::password');
-            $token = $configExternal->get('laravel-salesforce::token');
+            $user = $configExternal->get('salesforce.username');
+            $pass = $configExternal->get('salesforce.password');
+            $token = $configExternal->get('salesforce.token');
 
             $this->sfh->login($user, $pass . $token);
 
