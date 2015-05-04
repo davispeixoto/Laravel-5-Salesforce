@@ -35,8 +35,6 @@ class Salesforce
             $token = $configExternal->get('salesforce.token');
 
             $this->sfh->login($user, $pass . $token);
-
-            return $this;
         } catch (Exception $e) {
             throw new Exception('Exception at Constructor' . $e->getMessage() . "\n\n" . $e->getTraceAsString());
         }
