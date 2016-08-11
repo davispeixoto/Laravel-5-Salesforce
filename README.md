@@ -12,6 +12,16 @@ _(Laravel 4 Salesforce Package can be found [here](https://github.com/davispeixo
 [![Build Status](https://travis-ci.org/davispeixoto/Laravel-5-Salesforce.svg)](https://travis-ci.org/davispeixoto/Laravel-5-Salesforce)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/004992d1-90a7-4bd6-9dae-2d8b541386ae/small.png)](https://insight.sensiolabs.com/projects/004992d1-90a7-4bd6-9dae-2d8b541386ae)
 
+## Major upgrade
+This package is intended to support both Laravel 5.1 LTS and 5.2+.
+
+Laravel 5.1 package will be kept under version 1.*
+Laravel 5.2 package will be kept under version 2.*
+
+Consider this when installing or upgrading
+
+It also fixes a too much consuming session at Salesforce, thus these new versions needs adding the section aliases under `config/app.php`
+
 ## Installation
 
 The Laravel 5 package can be installed via [Composer](http://getcomposer.org) by requiring the
@@ -37,7 +47,12 @@ Find the `providers` key in your `config/app.php` and register the AWS Service P
 ```php
     'providers' => array(
         // ...
-        'Davispeixoto\Laravel5Salesforce\SalesforceServiceProvider',
+        Davispeixoto\Laravel5Salesforce\SalesforceServiceProvider::class,
+    )
+    
+    'aliases' => array(
+        // ...
+        'Salesforce' => Davispeixoto\Laravel5Salesforce\SalesforceFacade::class,
     )
 ```
 
@@ -111,5 +126,5 @@ who kindly empower this project with a free open-source license for [PhpStorm](h
   [1]: https://www.jetbrains.com/
   [2]: https://www.jetbrains.com/company/docs/logo_jetbrains.png
   [3]: https://www.jetbrains.com/phpstorm/
-  [4]: https://www.jetbrains.com/phpstorm/documentation/docs/logo_phpstorm.png
+  [4]: https://d3nmt5vlzunoa1.cloudfront.net/phpstorm/files/2015/12/PhpStorm_400x400_Twitter_logo_white.png
 

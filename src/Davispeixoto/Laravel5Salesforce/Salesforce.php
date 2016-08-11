@@ -19,30 +19,29 @@ class Salesforce
 
     public function __construct(Repository $configExternal)
     {
+        $this->sfh = new Client();
+
+        $wsdl = $configExternal->get('salesforce.wsdl');
+
+        if (empty($wsdl)) {
+            $wsdl = __DIR__ . '/Wsdl/enterprise.wsdl.xml';
+        }
+
+        $user = $configExternal->get('salesforce.username');
+        $pass = $configExternal->get('salesforce.password');
+        $token = $configExternal->get('salesforce.token');
+
         try {
-            $this->sfh = new Client();
-
-            $wsdl = $configExternal->get('salesforce.wsdl');
-
-            if (empty($wsdl)) {
-                $wsdl = __DIR__ . '/Wsdl/enterprise.wsdl.xml';
-            }
-
             $this->sfh->createConnection($wsdl);
-
-            $user = $configExternal->get('salesforce.username');
-            $pass = $configExternal->get('salesforce.password');
-            $token = $configExternal->get('salesforce.token');
-
             $this->sfh->login($user, $pass . $token);
         } catch (Exception $e) {
-            throw new Exception('Exception at Constructor' . $e->getMessage() . "\n\n" . $e->getTraceAsString());
+            throw new SalesforceException('Exception at Constructor' . $e->getMessage() . "\n\n" . $e->getTraceAsString());
         }
     }
 
     public function __call($method, $args)
     {
-        return call_user_func_array(array($this->sfh, $method), $args);
+        return call_user_func_array([$this->sfh, $method], $args);
     }
 
     /*

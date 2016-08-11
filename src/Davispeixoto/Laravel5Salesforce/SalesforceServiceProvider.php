@@ -1,6 +1,5 @@
 <?php namespace Davispeixoto\Laravel5Salesforce;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -11,14 +10,12 @@ use Illuminate\Support\ServiceProvider;
  */
 class SalesforceServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
      */
-    protected $defer = false;
-
+    protected static $defer = true;
 
     /**
      * Bootstrap the configuration
@@ -30,9 +27,7 @@ class SalesforceServiceProvider extends ServiceProvider
         $config = __DIR__ . '/config/config.php';
         $this->mergeConfigFrom($config, 'salesforce');
         $this->publishes([$config => config_path('salesforce.php')]);
-
     }
-
 
     /**
      * Register the service provider.
@@ -41,17 +36,10 @@ class SalesforceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->booting(function () {
-            $loader = AliasLoader::getInstance();
-            $loader->alias('Salesforce', 'Davispeixoto\Laravel5Salesforce\SalesforceFacade');
-            $loader->alias('SF', 'Davispeixoto\Laravel5Salesforce\SalesforceFacade');
-        });
-
         $this->app['salesforce'] = $this->app->share(function ($app) {
             return new Salesforce($app['config']);
         });
     }
-
 
     /**
      * Get the services provided by the provider.
