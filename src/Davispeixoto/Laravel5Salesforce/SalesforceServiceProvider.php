@@ -15,7 +15,7 @@ class SalesforceServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected static $defer = true;
+    protected $defer = true;
 
     /**
      * Bootstrap the configuration
