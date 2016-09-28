@@ -97,7 +97,7 @@ That's it! You're all set to go. Just use:
             echo print_r(Salesforce::describeLayout('Account'), true);
         } catch (Exception $e) {
             echo $e->getMessage();
-            echo $e->getTraceAsString
+            echo $e->getTraceAsString();
         }
     });
 ```
