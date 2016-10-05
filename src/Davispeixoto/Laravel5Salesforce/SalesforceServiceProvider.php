@@ -1,6 +1,7 @@
 <?php namespace Davispeixoto\Laravel5Salesforce;
 
 use Illuminate\Support\ServiceProvider;
+use Davispeixoto\ForceDotComToolkitForPhp\SforceEnterpriseClient as Client;
 
 /**
  * Class SalesforceServiceProvider
@@ -18,6 +19,11 @@ class SalesforceServiceProvider extends ServiceProvider
     protected $defer = true;
 
     /**
+     * @var
+     */
+    protected $sfh;
+
+    /**
      * Register the service provider.
      *
      * @return void
@@ -28,8 +34,11 @@ class SalesforceServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($config, 'salesforce');
         $this->publishes([$config => config_path('salesforce.php')]);
 
-        $this->app['salesforce'] = $this->app->share(function ($app) {
-            return new Salesforce($app['config']);
+        $this->app->singleton('salesforce', function ($app) {
+            $sf = new Salesforce(new Client());
+            $sf->connect($app['config']);
+
+            return $sf;
         });
     }
 
