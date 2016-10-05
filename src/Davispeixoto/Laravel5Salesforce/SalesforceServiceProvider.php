@@ -18,24 +18,16 @@ class SalesforceServiceProvider extends ServiceProvider
     protected $defer = true;
 
     /**
-     * Bootstrap the configuration
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $config = __DIR__ . '/config/config.php';
-        $this->mergeConfigFrom($config, 'salesforce');
-        $this->publishes([$config => config_path('salesforce.php')]);
-    }
-
-    /**
      * Register the service provider.
      *
      * @return void
      */
     public function register()
     {
+        $config = __DIR__ . '/config/config.php';
+        $this->mergeConfigFrom($config, 'salesforce');
+        $this->publishes([$config => config_path('salesforce.php')]);
+
         $this->app['salesforce'] = $this->app->share(function ($app) {
             return new Salesforce($app['config']);
         });
