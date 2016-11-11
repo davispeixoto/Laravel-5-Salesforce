@@ -55,7 +55,7 @@ class Salesforce
 
         try {
             $this->sfh->createConnection($wsdl);
-            $this->sfh->login($user, $pass . $token);
+            $this->sfh->login($user, $pass, $token);
         } catch (Exception $e) {
             throw new SalesforceException('Exception at Constructor' . $e->getMessage() . "\n\n" . $e->getTraceAsString());
         }
