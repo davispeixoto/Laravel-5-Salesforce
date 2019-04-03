@@ -17,6 +17,7 @@ This package is intended to support both Laravel 5.1 LTS and 5.2+.
 
 Laravel 5.1 package will be kept under version 1.*
 Laravel 5.2 package will be kept under version 2.*
+Laravel 5.8+ package will be kept under version 3.*
 
 Consider this when installing or upgrading
 
@@ -30,7 +31,7 @@ The Laravel 5 package can be installed via [Composer](http://getcomposer.org) by
 ```json
 {
     "require": {
-        "davispeixoto/laravel5-salesforce": "~1.0"
+        "davispeixoto/laravel5-salesforce": "~3.0"
     }
 }
 ```
