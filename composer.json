@@ -16,9 +16,9 @@
     }
   ],
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=7.3.0",
     "davispeixoto/force-dot-com-toolkit-for-php": "1.0.*",
-    "illuminate/support": "~5.0",
+    "illuminate/support": "~8.0",
     "vlucas/phpdotenv": "~2.2"
   },
   "require-dev": {
