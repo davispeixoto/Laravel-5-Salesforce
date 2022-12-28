@@ -1,33 +1,33 @@
 {
-  "name": "davispeixoto/laravel5-salesforce",
-  "description": "Laravel 5 Salesforce Force.com PHP Toolkit port",
+  "name": "wallheater/laravel9-salesforce",
+  "description": "Laravel 9 Salesforce Force.com PHP Toolkit port",
   "keywords": [
     "laravel",
     "salesforce",
     "crm",
     "force.com toolkit",
-    "laravel 5"
+    "laravel 9"
   ],
   "license": "MIT",
   "authors": [
     {
-      "name": "Davis Peixoto",
-      "email": "davis.peixoto@gmail.com"
+      "name": "Alexander Wohlhueter",
+      "email": "wallheater@gmail.com"
     }
   ],
   "require": {
-    "php": ">=5.4.0",
+    "php": "^8.0",
     "davispeixoto/force-dot-com-toolkit-for-php": "1.0.*",
-    "illuminate/support": "~5.0",
-    "vlucas/phpdotenv": "~2.2"
+    "illuminate/support": "^9.21",
+    "vlucas/phpdotenv": "^5.4.1"
   },
   "require-dev": {
-    "laravel/framework": "~5.0",
-    "phpunit/phpunit": "~4.0"
+    "laravel/framework": "^9.45",
+    "phpunit/phpunit": "^9.5.8"
   },
   "autoload": {
     "psr-4": {
-      "Davispeixoto\\Laravel5Salesforce\\": "src/Davispeixoto/Laravel5Salesforce"
+      "wallheater\\Laravel9Salesforce\\": "src/wallheater/Laravel9Salesforce"
     }
   },
   "minimum-stability": "dev"
