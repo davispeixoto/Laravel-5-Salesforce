@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "wallheater\\Laravel9Salesforce\\": "src/wallheater/Laravel9Salesforce"
+      "Davispeixoto\\Laravel5Salesforce\\": "src/Davispeixoto/Laravel5Salesforce"
     }
   },
   "minimum-stability": "dev"
